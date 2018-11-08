@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import biblioteca.daos.ConnectionFactory;
 import biblioteca.models.Livro;
 
 public class LivroDAO {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import biblioteca.daos.ConnectionFactory;
 import biblioteca.models.Aluno;
 
 
@@ -20,7 +21,7 @@ public class AlunoDAO {
 	}
 	public boolean inserir(Aluno aluno) {
 
-		String sql = "insert into Aluno (matricula, nome, cpf, endereco, dataNascimento) " + "values (?, ?, ?, ?, ?);";
+		String sql = "insert into Aluno (matricula, nome, cpf, dataNascimento, endereco) " + "values (?, ?, ?, ?, ?);";
 	
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);

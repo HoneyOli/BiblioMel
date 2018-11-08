@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import biblioteca.daos.ConnectionFactory;
 import biblioteca.models.Aluno;
 import biblioteca.models.Emprestimo;
 import biblioteca.models.Livro;
