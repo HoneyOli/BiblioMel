@@ -29,8 +29,9 @@ public class AlunoDAO {
 			stmt.setString(1, aluno.getMatricula());
 			stmt.setString(2, aluno.getNome());
 			stmt.setString(3, aluno.getCpf());
-			stmt.setString(4, aluno.getEndereco());
-			stmt.setDate(5, new java.sql.Date(aluno.getDataNascimento().getTimeInMillis()));
+			stmt.setDate(4, new java.sql.Date(aluno.getDataNascimento().getTimeInMillis()));
+			stmt.setString(5, aluno.getEndereco());
+			
 
 			stmt.execute();
 			stmt.close();

@@ -20,7 +20,7 @@ public class LivroDAO {
 	
 	public boolean inserir(Livro livro) {
 
-		String sql = "insert into Livro (titulo, autor, editora, anoPublicacao, edicao) " + "values (?, ?, ?, ?, ?);";
+		String sql = "insert into livro (titulo, autor, editora, datPub, edicao) " + "values (?, ?, ?, ?, ?);";
 	
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -28,7 +28,7 @@ public class LivroDAO {
 			stmt.setString(1, livro.getTitulo());
 			stmt.setString(2, livro.getAutor());
 			stmt.setString(3, livro.getEditora());
-			stmt.setDate(4, new java.sql.Date(livro.getDataPub().getTimeInMillis()));
+			stmt.setDate(4, new java.sql.Date(livro.getDataPublicacao().getTimeInMillis()));
 			stmt.setInt(5, livro.getEdicao());
 
 			stmt.execute();
@@ -61,10 +61,8 @@ public class LivroDAO {
 
 				
 				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("anoPublicacao"));
-				livro.setDataPub(data);
-
-				
+				data.setTime(rs.getDate("datPub"));
+				livro.setDataPublicacao(data);
 				result.add(livro);
 			}
 			rs.close();
@@ -93,8 +91,8 @@ public class LivroDAO {
 
 				
 				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("anoPublicacao"));
-				livro.setDataPub(data);
+				data.setTime(rs.getDate("datPub"));
+				livro.setDataPublicacao(data);
 			}
 			rs.close();
 			stmt.close();
@@ -103,9 +101,9 @@ public class LivroDAO {
 		}
 		return livro;
 	}
-	public boolean atualisar(Livro livro) {
+	public boolean atualisar (Livro livro) {
 		String sql = "update livro set titulo=?, autor=?, "
-					+ "editora=?, anoPublicacao=?, edicao=? "
+					+ "editora=?, datPub=?, edicao=? "
 					+ "where id=?";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
@@ -113,7 +111,7 @@ public class LivroDAO {
 			stmt.setString(1, livro.getTitulo());
 			stmt.setString(2, livro.getAutor());
 			stmt.setString(3, livro.getEditora());
-			stmt.setDate(4, new java.sql.Date(livro.getDataPub().getTimeInMillis()));
+			stmt.setDate(4, new java.sql.Date(livro.getDataPublicacao().getTimeInMillis()));
 			stmt.setInt(5, livro.getEdicao());
 			stmt.setLong(6, livro.getId());
 
@@ -127,7 +125,7 @@ public class LivroDAO {
 	}
 	public boolean remover(Livro livro) {
 		try {
-			PreparedStatement stmt = connection.prepareStatement("delete" + "from livro where id=?");
+			PreparedStatement stmt = connection.prepareStatement("delete from livro where id=?");
 			stmt.setLong(1, livro.getId());
 			stmt.execute();
 			stmt.close();

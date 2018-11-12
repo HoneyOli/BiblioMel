@@ -5,9 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Adicionar Livro</title>
 </head>
 <body>
+<c:import url="../menu.jsp"></c:import>
+<form action="/BiblioMel/livro" method="post">
 
+<h1>Adicionar Livro</h1>
+<h1>Titulo: <input type="text" name="titulo"></h1>
+<h1>Autor: <input type="text" name="autor"> </h1>
+<h1>Editora: <input type="text" name="editora"></h1>
+<h1>Data de Publicação: <input type="text" name="dataPublicacao"></h1>
+<h1>Edição: <input type="text" name="edicao"> </h1>
+<button type="submit">Adicionar</button>
 </body>
 </html>

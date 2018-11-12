@@ -25,8 +25,8 @@ public class AlunoController {
 	public String adicionar(Aluno aluno) {
 		System.out.println("Chamou o método de adicionar");
 		System.out.println(aluno);
-		AlunoDAO contatoDAO = new AlunoDAO();
-		contatoDAO.inserir(aluno);
+		AlunoDAO alunoDAO = new AlunoDAO();
+		alunoDAO.inserir(aluno);
 		return "redirect:aluno";
 	}
 	

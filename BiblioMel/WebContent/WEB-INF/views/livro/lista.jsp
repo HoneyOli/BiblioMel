@@ -5,9 +5,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Livros</title>
 </head>
 <body>
+<c:import url="../menu.jsp"></c:import>
+
+	<h1>Lista de Livros:</h1>
+
+	<table border="2">
+		<thead>
+			<tr>
+				<th>Titulo</th>
+				<th>Autor</th>
+				<th>Editora</th>
+				<th>Data de Publicação</th>
+				<th>Edição</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="livro" items="${livro}">
+				<tr>
+					<td>${livro.titulo }</td>
+					<td>${livro.autor }</td>
+					<td>${livro.editora }</td>
+					<td>${livro.dataPublicacao.time }</td>
+					<td>${livro.edicao }</td>
+					<td><a href="/BiblioMel/livro/remover?id=${livro.id}">Remover</a></td>
+				</tr>
+			</c:forEach>
+
+		</tbody>
+
+	</table>
 
 </body>
 </html>
