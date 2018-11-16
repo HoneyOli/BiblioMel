@@ -5,17 +5,17 @@ import java.util.Calendar;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Aluno {
-	private Long id;
+	private int id;
 	private String matricula;
 	private String nome;
 	private String cpf;
 	@DateTimeFormat (pattern="dd/MM/yyyy")
 	private Calendar dataNascimento;
 	private String endereco;
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getMatricula() {

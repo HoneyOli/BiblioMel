@@ -10,25 +10,25 @@
 <body>
 <h1>Relatório de Emprestimo:</h1>
 
-	<table border="2">
+	
+		<table border="2">
 		<thead>
 			<tr>
 				
+				<th>Id</th>
+				<th>Matricula</th>
+				<th>Titulo do livro</th>
 				<th>Data de Emprestimo</th>
-				<th>Data de Devolução</th>
-				<th>Livro</th>
-				<th>Aluno</th>
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="livro" items="${livro }">
+			<c:forEach var="livro" items="${livros }">
 				<tr>
-					
-					<td>${emprestimo.dataEmprestimo.time }</td>
-					<td>${emprestimo.dataDevolucao.time }</td>
-					<td>${emprestimo.livro }</td>
-					<td>${emprestimo.aluno }</td>		
-
+					<td>${livro.id }</td>
+					<td>${livro.matricula }</td>		
+					<td>${livro.dataEmprestimo.time }</td>
+					<td>${livro.dataDevolucao.time }</td>
+				
 				</tr>
 			</c:forEach>
 

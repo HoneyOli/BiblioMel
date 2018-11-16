@@ -3,11 +3,20 @@ package biblioteca.models;
 import java.util.Calendar;
 
 public class Emprestimo {
-
+	private int id;
 	private Calendar dataEmp;
 	private Calendar dataDev;
 	private Livro livro;
 	private Aluno aluno;
+
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Calendar getDataEmp() {
 		return dataEmp;

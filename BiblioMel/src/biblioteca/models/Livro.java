@@ -6,16 +6,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Livro {
 
-	private long id;
+	private int id;
 	private String titulo;
 	private String autor;
 	private String editora;
 	@DateTimeFormat (pattern="dd/MM/yyyy")
 	private Calendar dataPublicacao;
 	private int edicao;
-	public long getId() {
-		return id;
-	}
+	
 	public String getTitulo() {
 		return titulo;
 	}
@@ -46,7 +44,10 @@ public class Livro {
 	public void setEdicao(int edicao) {
 		this.edicao = edicao;
 	}
-	public void setId(long id) {
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
 		this.id = id;
 	}
 	

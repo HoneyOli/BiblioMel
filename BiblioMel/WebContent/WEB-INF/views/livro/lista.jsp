@@ -13,7 +13,7 @@
 #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 105%;
+    
     top: 50%;
     left: 50%;
     center;
@@ -22,7 +22,7 @@
 }
 #customers td, #customers th {
     border: 1px solid #FFAEB9;
-    padding: 20px;
+    padding: 10px;
 }
 #customers tr:nth-child{background-color: #FFE4E1;}
 

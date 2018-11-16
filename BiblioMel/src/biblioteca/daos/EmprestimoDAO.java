@@ -24,15 +24,16 @@ public class EmprestimoDAO {
 	}
 	public boolean inserir(Emprestimo emprestimo) {
 
-		String sql = "insert into emprestimo (aluno, livro, dataEmp) " + "values (?, ?, ?);";
+		String sql = "insert into emprestimo (dataEmp, dataDev, livro, aluno) " + "values (?, ?, ?, ?);";
 	
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			
-			
-			stmt.setLong(1, emprestimo.getAluno().getId());
-			stmt.setLong(2, emprestimo.getLivro().getId());
-			stmt.setDate(3, new java.sql.Date(emprestimo.getDataEmp().getTimeInMillis()));
+			Calendar dataEmprestimo = Calendar.getInstance();
+			stmt.setDate(1, new java.sql.Date(dataEmprestimo.getTimeInMillis()));
+			stmt.setDate(2, null);
+			stmt.setInt(3, emprestimo.getLivro().getId());
+			stmt.setInt(4, emprestimo.getAluno().getId());
 			stmt.execute();
 			stmt.close();
 
@@ -180,15 +181,24 @@ public List<Emprestimo> getAtrasados() {
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement("select * from emprestimo");
 			ResultSet rs = stmt.executeQuery();
-
+			Emprestimo emprestimo;
 			while (rs.next()) {
 				
-				Emprestimo emp = new Emprestimo();
+				emprestimo = new Emprestimo();
+				emprestimo.setId(rs.getInt("id"));
+				emprestimo.setAluno(new AlunoDAO().getAlunoById(rs.getInt("aluno")));
+				emprestimo.setLivro(new LivroDAO().getLivroById(rs.getInt("livro")));
+				Calendar dataEmprestimo = Calendar.getInstance();
+				dataEmprestimo.setTime(rs.getDate("dataEmp"));
+				emprestimo.setDataEmp(dataEmprestimo);
 				
+				if(rs.getDate("dataDev") != null) {
+					Calendar dataDevolucao = Calendar.getInstance();
+					dataDevolucao.setTime(rs.getDate("dataDev"));
+					emprestimo.setDataDev(dataDevolucao);
+				}
 				
-
-				
-				result.add(emp);
+				result.add(emprestimo);
 			}
 			rs.close();
 			stmt.close();
@@ -207,12 +217,12 @@ public List<Emprestimo> getAtrasados() {
 
 			while (rs.next()) {
 				
-				Emprestimo emp = new Emprestimo();
+				Emprestimo emprestimo = new Emprestimo();
 				
 				
 				
 				
-				result.add(emp);
+				result.add(emprestimo);
 			}
 			rs.close();
 			stmt.close();
@@ -231,11 +241,11 @@ public List<Emprestimo> getAtrasados() {
 
 			while (rs.next()) {
 				
-				Emprestimo emp = new Emprestimo();
+				Emprestimo emprestimo = new Emprestimo();
 				
 				
 				
-				result.add(emp);
+				result.add(emprestimo);
 			}
 			rs.close();
 			stmt.close();
@@ -272,12 +282,13 @@ public List<Emprestimo> getAtrasados() {
 	}
 	
 	public boolean devolucao(Emprestimo emprestimo) {
-		String sql = "update emprestimo set dataDev=? where aluno=? and livro=?;";
+		String sql = "update emprestimo set dataDev=? where id = ?;";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setDate(1, new java.sql.Date(Calendar.getInstance().getTimeInMillis()));
-			stmt.setLong(2, emprestimo.getAluno().getId());
-			stmt.setLong(2, emprestimo.getLivro().getId());
+			
+			Calendar dataDevolucao = Calendar.getInstance();
+			stmt.setDate(1,  new java.sql.Date(dataDevolucao.getTimeInMillis()));
+			stmt.setInt(2, emprestimo.getId());
 			
 			stmt.execute();
 			stmt.close();

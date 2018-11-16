@@ -83,7 +83,7 @@ public class AlunoDAO {
 			while (rs.next()) {
 				
 				Aluno aluno = new Aluno();
-				aluno.setId(rs.getLong("id"));
+				aluno.setId(rs.getInt("id"));
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setNome(rs.getString("nome"));
 				aluno.setCpf(rs.getString("cpf"));
@@ -114,7 +114,7 @@ public class AlunoDAO {
 
 			while (rs.next()) {
 				
-				aluno.setId(rs.getLong("id"));
+				aluno.setId(rs.getInt("id"));
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setNome(rs.getString("nome"));
 				aluno.setCpf(rs.getString("cpf"));
@@ -142,7 +142,7 @@ public class AlunoDAO {
 
 			while (rs.next()) {
 				
-				aluno.setId(rs.getLong("id"));
+				aluno.setId(rs.getInt("id"));
 				aluno.setMatricula(rs.getString("matricula"));
 				aluno.setNome(rs.getString("nome"));
 				aluno.setCpf(rs.getString("cpf"));
@@ -182,7 +182,7 @@ public class AlunoDAO {
 			while (rs.next()) {
 				
 				Aluno aluno = new Aluno();
-				aluno.setId(rs.getLong("id"));
+				aluno.setId(rs.getInt("id"));
 				aluno.setNome(rs.getString("nome"));
 				aluno.setCpf(rs.getString("cpf"));
 				aluno.setMatricula(rs.getString("matricula"));

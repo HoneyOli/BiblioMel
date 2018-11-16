@@ -53,7 +53,7 @@ public class LivroDAO {
 			while (rs.next()) {
 				
 				Livro livro = new Livro();
-				livro.setId(rs.getLong("id"));
+				livro.setId(rs.getInt("id"));
 				livro.setTitulo(rs.getString("titulo"));
 				livro.setAutor(rs.getString("autor"));
 				livro.setEditora(rs.getString("editora"));
@@ -83,7 +83,7 @@ public class LivroDAO {
 
 			while (rs.next()) {
 				
-				livro.setId(rs.getLong("id"));
+				livro.setId(rs.getInt("id"));
 				livro.setTitulo(rs.getString("titulo"));
 				livro.setAutor(rs.getString("autor"));
 				livro.setEditora(rs.getString("editora"));
@@ -145,7 +145,7 @@ public class LivroDAO {
 
 			if (rs.next()) {
 				result = new Livro();
-				result.setId(rs.getLong("id"));
+				result.setId(rs.getInt("id"));
 				result.setTitulo(rs.getString("titulo"));
 				result.setAutor(rs.getString("autor"));
 				result.setEditora(rs.getString("editora"));

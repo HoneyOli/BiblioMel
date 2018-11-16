@@ -28,31 +28,31 @@ public class empController {
 
 		ModelAndView model = new ModelAndView("emprestimo/form");
 
-		model.addObject("aluno", listaA);
-		model.addObject("livro", listaL);
+		model.addObject("alunos", listaA);
+		model.addObject("livros", listaL);
 
 		return model;
 	}
 	
-	@PostMapping ("/emprestimo")
+	@PostMapping ("/emprestimo/executarEmprestimo")
 	public String adicionar(Emprestimo emprestimo) {
 		System.out.println("Chamou o método de adicionar");
 		System.out.println(emprestimo);
 		EmprestimoDAO EmprestimoDAO = new EmprestimoDAO();
 		EmprestimoDAO.inserir(emprestimo);
-		return "redirect:/emprestimo";
+		return "redirect:listarEmprestimo";
 	}
 	
 
 
 
-	@GetMapping("/emprestimo/")
+	@RequestMapping("/emprestimo/listarEmprestimo")
 	public ModelAndView listar() {
 		System.out.println("Chamou o metódo de listagem");
 		EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
 		List<Emprestimo> lista = emprestimoDAO.getLista();
 		ModelAndView model = new ModelAndView("emprestimo/list");
-		model.addObject("emprestimo", lista);
+		model.addObject("emprestimos", lista);
 		return model;
 	}
 
@@ -75,23 +75,12 @@ public class empController {
 		model.addObject("emprestimo", lista);
 		return model;
 	}
-		@RequestMapping("/emprestimo/devolucao")
-		public String devolucao(Long aluno, Long livro ) {
-			System.out.println("Chamou o método devolução");
-			Aluno aluno1 = new Aluno();
-			Livro livro1 = new Livro();
-			Emprestimo emprestimo = new Emprestimo();
-			AlunoDAO alunoDAO = new AlunoDAO();
-			LivroDAO livroDAO = new LivroDAO();
-			EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
-			aluno1 = alunoDAO.getAlunoById(aluno);
-			emprestimo.setAluno(aluno1);		
-			livro1 = livroDAO.getLivroById(livro);
-			emprestimo.setLivro(livro1);
-			
-			emprestimoDAO.devolucao(emprestimo);
-			
-			return "redirect:../emprestimo/EmpAbertos";
-
-		}
+	@RequestMapping("/emprestimo/devolver")
+	public String devolucao(Emprestimo emprestimo) {
+		System.out.println("Chamou o método devolução");
+		EmprestimoDAO emprestimoDAO = new EmprestimoDAO();
+		System.out.println(emprestimo);
+		emprestimoDAO.devolucao(emprestimo);
+		return "redirect:listarEmprestimo";
+	}
 }
