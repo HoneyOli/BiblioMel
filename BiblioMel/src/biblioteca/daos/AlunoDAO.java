@@ -43,6 +43,8 @@ public class AlunoDAO {
 		}
 
 		return true;
+		
+		
 	}
 	public boolean atualisar(Aluno aluno) {
 
@@ -72,6 +74,7 @@ public class AlunoDAO {
 	}
 	public List<Aluno> getLista() {
 		List<Aluno> result = new ArrayList<>();
+		
 
 		try {
 			PreparedStatement stmt = this.connection.prepareStatement("select * from aluno");
@@ -169,5 +172,35 @@ public class AlunoDAO {
 		}
 		return true;
 	}
+	public List<Aluno> getAluno() {
+		List<Aluno> result = new ArrayList<>();
+
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement("select * from aluno;");
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				
+				Aluno aluno = new Aluno();
+				aluno.setId(rs.getLong("id"));
+				aluno.setNome(rs.getString("nome"));
+				aluno.setCpf(rs.getString("cpf"));
+				aluno.setMatricula(rs.getString("matricula"));
+				aluno.setEndereco(rs.getString("endereco"));
+				Calendar dataNascimento = Calendar.getInstance();
+				dataNascimento.setTime(rs.getDate("dataNascimento"));
+				aluno.setDataNascimento(dataNascimento);
+			
+				result.add(aluno);
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+	}
 }
+
 	

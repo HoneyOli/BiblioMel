@@ -135,5 +135,35 @@ public class LivroDAO {
 		}
 		return true;
 	}
+	public Livro getLivroByTitulo(String titulo) {
+		Livro result = null;
+
+		try {
+			PreparedStatement stmt = this.connection.prepareStatement("select * from livro where titulo = ?;");
+			stmt.setString(1, titulo);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				result = new Livro();
+				result.setId(rs.getLong("id"));
+				result.setTitulo(rs.getString("titulo"));
+				result.setAutor(rs.getString("autor"));
+				result.setEditora(rs.getString("editora"));
+				
+				Calendar data = Calendar.getInstance();
+				data.setTime(rs.getDate("DataPublicacao"));
+				result.setDataPublicacao(data);
+				
+				result.setEdicao(rs.getInt("edicao"));
+				
+			}
+			rs.close();
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
+}
 }
 

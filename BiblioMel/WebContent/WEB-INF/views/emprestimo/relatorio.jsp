@@ -21,7 +21,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="livro" items="${livros }">
+			<c:forEach var="livro" items="${livro }">
 				<tr>
 					
 					<td>${emprestimo.dataEmprestimo.time }</td>
